@@ -48,10 +48,15 @@
       portfolio_kicker:"Фильтруй по темам — открой работу, чтобы увидеть детали.",
       shop_title:"Магазин",
       shop_kicker:"Оригиналы доступны — для заказа напиши в Telegram или через форму.",
+      shop_sort_label:"Сортировка",
+      shop_sort_newest:"Сначала новые",
+      shop_sort_price_desc:"Дороже → дешевле",
+      shop_sort_price_asc:"Дешевле → дороже",
+      shop_sort_year_desc:"По году (убыв.)",
       pricing_title:"Стоимость",
       pricing_p1_title:"Оригинальная работа",
-      pricing_p1_text:"Выбор из готовых работ",
-      pricing_p1_li1:"Размер и цена — в карточке",
+      pricing_p1_text:"Выбор из готовых работ из портфолио.",
+      pricing_p1_li1:"Размер и цена — в карточке работы",
       pricing_p1_li2:"Можно подобрать в интерьер",
       pricing_p1_li3:"Фото/видео перед отправкой",
       pricing_p1_price:"от 6 000 ₽",
@@ -59,9 +64,10 @@
       pricing_p2_text:"По референсу/идее в моём стиле.",
       pricing_p2_li1:"Согласуем сюжет и размер",
       pricing_p2_li2:"Сроки — индивидуально",
+      pricing_p2_li3:"Предоплата по договорённости",
       pricing_p2_price:"по запросу",
       pricing_p3_title:"Оформление в раму",
-      pricing_p3_text:""под ключ".",
+      pricing_p3_text:"Если нужно “под ключ”.",
       pricing_p3_li1:"Подбор паспарту/рамы",
       pricing_p3_li2:"Фото вариантов перед заказом",
       pricing_p3_li3:"Стоимость зависит от оформления",
@@ -128,11 +134,14 @@
       ach_group_2024_gm:"2024 — Grand Master, Moscow (Russia)",
       ach_group_2024_10th:"2024 — 10th Exhibition of Russian Watercolor Artists, Moscow (Russia)",
       ach_group_2024_tehran:"2024 — “Art And Point” 1st International Annual Watercolor Exhibition, Tehran (Iran)",
+      ach_group_2023_raaw:"2023 — RAAW, New York (USA)",
       ach_group_2022_tretyakov:"2022 — Creative Environments, New Tretyakov Gallery, Moscow (Russia)",
       ach_note:"Полный список — на Artmajeur.",
       ach_solo_title:"Персональные выставки",
       ach_solo_2025:"2025 — Watercolor Worlds, Moscow (Russia)",
       ach_solo_2024:"2024 — “Through The Watercolor Window”, June, Moscow (Russia)",
+      ach_collections_title:"Постоянные коллекции",
+      ach_collections_2022:"2022 — Artsfashion Exhibition, Moscow (Russia)",
       ach_press_title:"Публикации и пресса",
       ach_press_2023_gb:"2023 — Glamour Buff (USA)",
       ach_press_2023_js:"2023 — Just Summer On My Mind, Miami (USA)",
@@ -248,11 +257,14 @@
       ach_group_2024_gm:"2024 — Grand Master, Moscow (Russia)",
       ach_group_2024_10th:"2024 — 10th Exhibition of Russian Watercolor Artists, Moscow (Russia)",
       ach_group_2024_tehran:"2024 — “Art And Point” 1st International Annual Watercolor Exhibition, Tehran (Iran)",
+      ach_group_2023_raaw:"2023 — RAAW, New York (USA)",
       ach_group_2022_tretyakov:"2022 — Creative Environments, New Tretyakov Gallery, Moscow (Russia)",
       ach_note:"Full list on Artmajeur.",
       ach_solo_title:"Solo exhibitions",
       ach_solo_2025:"2025 — Watercolor Worlds, Moscow (Russia)",
       ach_solo_2024:"2024 — “Through The Watercolor Window”, June, Moscow (Russia)",
+      ach_collections_title:"Permanent collections",
+      ach_collections_2022:"2022 — Artsfashion Exhibition, Moscow (Russia)",
       ach_press_title:"Publications & press",
       ach_press_2023_gb:"2023 — Glamour Buff (USA)",
       ach_press_2023_js:"2023 — Just Summer On My Mind, Miami (USA)",
@@ -296,11 +308,15 @@
   // Filters
   const filtersEl = el("filters");
   const galleryEl = el("gallery");
+  const shopFiltersEl = el("shopFilters");
+  const shopSortEl = el("shopSort");
   const shopEl = el("shopGrid");
 
   function uniq(arr){ return [...new Set(arr)]; }
 
   let activeFilter = "all";
+  let activeShopFilter = "all";
+  let activeShopSort = "newest";
 
   function categories(){
     const list = DATA.works.map(w => lang === "ru" ? w.category_ru : w.category_en);
@@ -384,125 +400,46 @@
     list.forEach(w=>galleryEl.appendChild(createCard(w)));
   }
 
-  function renderShop(){
-    if(!shopEl) return;
-    shopEl.innerHTML="";
-    // show 6 items max: most expensive + a mix
-    const sorted = [...DATA.works].sort((a,b)=>(b.price_rub||0)-(a.price_rub||0));
-    const picks = sorted.slice(0,6);
-    picks.forEach(w=>shopEl.appendChild(createCard(w)));
-  }
+  function renderShopFilters(){
+    if(!shopFiltersEl) return;
+    shopFiltersEl.innerHTML="";
 
-  // Modal
-  const modal = el("modal");
-  const mClose = el("mClose");
-  const mImg = el("mImg");
-  const mTitle = el("mTitle");
-  const mMeta = el("mMeta");
-  const mPrice = el("mPrice");
-  const mDesc = el("mDesc");
-  const mBadges = el("mBadges");
-  const mCopy = el("mCopy");
-  const mExtra = el("mExtra");
-  const mFramedWrap = el("mFramedWrap");
-  const mFramed = el("mFramed");
+    const allBtn = document.createElement("button");
+    allBtn.className = "pill" + (activeShopFilter==="all" ? " active" : "");
+    allBtn.textContent = (lang==="ru") ? "Все" : "All";
+    allBtn.addEventListener("click", ()=>{ activeShopFilter="all"; renderShop(); });
+    shopFiltersEl.appendChild(allBtn);
 
-  function openModal(w){
-    if(!modal) return;
-    mTitle.textContent = `#${w.id} — ${workTitle(w)}`;
-    mMeta.textContent = workMeta(w) + " · " + catOf(w);
-    mImg.src = w.images.art;
-    mImg.alt = workTitle(w);
-    mPrice.textContent = fmtRub(w.price_rub);
-    mDesc.textContent = workDesc(w);
-
-    mBadges.innerHTML="";
-    const b1=document.createElement("span");
-    b1.className="badge";
-    b1.textContent = catOf(w);
-    const b2=document.createElement("span");
-    b2.className="badge";
-    b2.textContent = `${w.size_cm.w}×${w.size_cm.h} cm`;
-    mBadges.appendChild(b1);
-    mBadges.appendChild(b2);
-
-    if(w.has_framed_photo && w.images.framed){
-      mFramedWrap.style.display="block";
-      mFramed.src = w.images.framed;
-      mFramed.alt = workTitle(w) + " (framed)";
-    }else{
-      mFramedWrap.style.display="none";
-      mFramed.src = "";
-    }
-
-    const extra = (lang==="ru")
-      ? `Текст для сообщения: «Здравствуйте! Хочу купить работу №${w.id} — ${w.title_ru}. Доставка в …»`
-      : `Message template: “Hi! I’d like to buy artwork #${w.id} — ${w.title_en}. Shipping to …”`;
-    mExtra.textContent = extra;
-
-    mCopy.onclick = async ()=>{
-      try{
-        await navigator.clipboard.writeText(extra);
-        mCopy.textContent = (lang==="ru") ? "Скопировано" : "Copied";
-        setTimeout(()=> mCopy.textContent = t("modal_copy"), 900);
-      }catch(e){
-        alert((lang==="ru") ? "Не удалось скопировать" : "Copy failed");
-      }
-    };
-
-    modal.classList.add("open");
-    modal.setAttribute("aria-hidden","false");
-    document.body.style.overflow="hidden";
-
-    // close on bg click
-    modal.onclick = (e)=>{
-      if(e.target === modal) closeModal();
-    };
-    document.addEventListener("keydown", escClose);
-  }
-
-  function escClose(e){
-    if(e.key==="Escape") closeModal();
-  }
-
-  function closeModal(){
-    modal.classList.remove("open");
-    modal.setAttribute("aria-hidden","true");
-    document.body.style.overflow="";
-    document.removeEventListener("keydown", escClose);
-  }
-  if(mClose) mClose.addEventListener("click", closeModal);
-
-  // Form: demo send -> copy text
-  const sendBtn = el("sendBtn");
-  if(sendBtn){
-    sendBtn.addEventListener("click", async ()=>{
-      const name = el("fName").value.trim();
-      const contact = el("fContact").value.trim();
-      const msg = el("fMsg").value.trim();
-      const text = (lang==="ru")
-        ? `Заявка с сайта MKate Gallery\nИмя: ${name||"-"}\nКонтакт: ${contact||"-"}\nСообщение: ${msg||"-"}`
-        : `MKate Gallery website inquiry\nName: ${name||"-"}\nContact: ${contact||"-"}\nMessage: ${msg||"-"}`;
-      try{
-        await navigator.clipboard.writeText(text);
-        el("formHint").textContent = (lang==="ru") ? "Скопировано в буфер — вставь в Telegram и отправь." : "Copied — paste into Telegram and send.";
-      }catch(e){
-        el("formHint").textContent = (lang==="ru") ? "Не удалось скопировать. Скопируй вручную." : "Copy failed. Please copy manually.";
-      }
+    categories().forEach(cat=>{
+      const b=document.createElement("button");
+      b.className="pill" + (activeShopFilter===cat ? " active" : "");
+      b.textContent=cat;
+      b.addEventListener("click", ()=>{ activeShopFilter=cat; renderShop(); });
+      shopFiltersEl.appendChild(b);
     });
   }
 
-  function renderAll(){
-    renderFilters();
-    renderGallery();
-    renderShop();
+  function parsePrice(w){ return (w.price_rub||0); }
+
+  function sortShop(items){
+    const arr=[...items];
+    if(activeShopSort==="price_desc") arr.sort((a,b)=>parsePrice(b)-parsePrice(a));
+    else if(activeShopSort==="price_asc") arr.sort((a,b)=>parsePrice(a)-parsePrice(b));
+    else if(activeShopSort==="year_desc") arr.sort((a,b)=>(b.year||0)-(a.year||0));
+    else arr.sort((a,b)=>(b.year||0)-(a.year||0) || parsePrice(b)-parsePrice(a)); // newest
+    return arr;
   }
 
-  // init
-  el("year").textContent = new Date().getFullYear();
-  applyI18n();
-  renderAll();
-})();
+  function renderShop(){
+    if(!shopEl) return;
+    shopEl.innerHTML="";
+    let items = [...DATA.works];
+    if(activeShopFilter!=="all"){
+      items = items.filter(w=>catOf(w)===activeShopFilter);
+    }
+    items = sortShop(items);
+    items.forEach(w=>shopEl.appendChild(createCard(w)));
+  }
 
 /* --- Telegram send (opens chat with prefilled message) --- */
 (function () {
@@ -544,4 +481,5 @@
     const status = form.querySelector('[data-status]');
     if (status) status.textContent = 'Откроется Telegram с готовым сообщением. Если нужно — просто нажмите “Отправить”.';
   }, true);
+})();
 })();

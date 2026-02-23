@@ -103,6 +103,7 @@
 <li data-i18n="ach_group_2024_gm">2024 — Grand Master, Moscow (Russia)</li>
 <li data-i18n="ach_group_2024_10th">2024 — 10th Exhibition of Russian Watercolor Artists, Moscow (Russia)</li>
 <li data-i18n="ach_group_2024_tehran">2024 — “Art And Point” 1st International Annual Watercolor Exhibition, Tehran (Iran)</li>
+<li data-i18n="ach_group_2023_raaw">2023 — RAAW, New York (USA)</li>
 <li data-i18n="ach_group_2022_tretyakov">2022 — Creative Environments, New Tretyakov Gallery, Moscow (Russia)</li>
 </ul>
 <p class="small muted" data-i18n="ach_note">Полный список — на Artmajeur.</p>
@@ -112,6 +113,11 @@
 <ul class="bullets">
 <li data-i18n="ach_solo_2025">2025 — Watercolor Worlds, Moscow (Russia)</li>
 <li data-i18n="ach_solo_2024">2024 — “Through The Watercolor Window”, June, Moscow (Russia)</li>
+</ul>
+<p class="kicker" data-i18n="ach_collections_title" style="margin-top:14px;">Постоянные коллекции</p>
+<ul class="bullets">
+<li data-i18n="ach_collections_2022">2022 — Artsfashion Exhibition, Moscow (Russia)</li>
+</ul>
 </div>
 <div class="card" style="padding:22px;">
 <p class="kicker" data-i18n="ach_press_title">Публикации и пресса</p>
@@ -137,6 +143,18 @@
 <div class="container">
 <h2 data-i18n="shop_title">Магазин</h2>
 <p class="kicker" data-i18n="shop_kicker">Оригиналы доступны — для заказа напиши в Telegram или через форму.</p>
+<div class="shop-controls">
+  <div class="filters" id="shopFilters"></div>
+  <div class="sortbar">
+    <label class="sortlabel" for="shopSort" data-i18n="shop_sort_label">Сортировка</label>
+    <select id="shopSort" class="sortselect">
+      <option value="newest" data-i18n="shop_sort_newest">Сначала новые</option>
+      <option value="price_desc" data-i18n="shop_sort_price_desc">Дороже → дешевле</option>
+      <option value="price_asc" data-i18n="shop_sort_price_asc">Дешевле → дороже</option>
+      <option value="year_desc" data-i18n="shop_sort_year_desc">По году (убыв.)</option>
+    </select>
+  </div>
+</div>
 <div class="gallery" id="shopGrid"></div>
 </div>
 </section>

@@ -406,3 +406,15 @@ textarea{min-height:120px; resize:vertical}
 .hero-actions{justify-content:flex-start !important; align-items:flex-start !important;}
 
 .hero-grid > div{justify-self:start;}
+
+/* Shop controls */
+.shop-controls{display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-top:14px}
+.shop-controls .filters{flex:1 1 auto}
+.sortbar{display:flex; gap:10px; align-items:center}
+.sortlabel{font-size:13px; color:var(--muted)}
+.sortselect{padding:10px 12px; border-radius:999px; border:1px solid rgba(22,59,44,.18); background:rgba(255,255,255,.6); color:var(--ink)}
+@media (max-width:720px){
+  .shop-controls{align-items:flex-start}
+  .sortbar{width:100%; justify-content:flex-start}
+  .sortselect{width:100%}
+}
