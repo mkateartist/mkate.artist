@@ -21,7 +21,6 @@
 </a>
 <nav aria-label="Основное меню" class="menu">
 <a data-i18n="nav_about" href="#about">Обо мне</a>
-<a data-i18n="nav_portfolio" href="#portfolio">Портфолио</a>
 <a data-i18n="nav_shop" href="#shop">Магазин</a>
 <a data-i18n="nav_commissions" href="#commissions">На заказ</a>
 <a data-i18n="nav_reviews" href="#reviews">Отзывы</a>
@@ -41,7 +40,7 @@
 <div class="card" id="mobileMenu" style="display:none; padding:12px; margin-bottom:14px;">
 <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
 <a data-i18n="nav_about" href="#about">Обо мне</a>
-<a data-i18n="nav_portfolio" href="#portfolio">Портфолио</a>
+<a data-i18n="nav_portfolio" href="#shop">Портфолио</a>
 <a data-i18n="nav_shop" href="#shop">Магазин</a>
 <a data-i18n="nav_commissions" href="#commissions">На заказ</a>
 <a data-i18n="nav_reviews" href="#reviews">Отзывы</a>
@@ -63,8 +62,8 @@
               Акварельные пейзажи, море, архитектура и портреты — спокойные сюжеты и воздух в каждом листе.
             </p>
 <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; align-items:center;">
-<a class="btn" href="#" id="tgLink" rel="noopener noreferrer" target="_blank">Telegram</a>
-<a class="btn" data-i18n="contacts_cta_back" href="#portfolio">Вернуться к портфолио</a>
+<a class="btn" href="#" id="tgLinkHero" rel="noopener noreferrer" target="_blank">Telegram</a>
+<a class="btn" data-i18n="contacts_cta_back" href="#shop">Вернуться к портфолио</a>
 </div>
 
 </div>
@@ -84,7 +83,7 @@
 <h2 data-i18n="about_title">Обо мне</h2>
 <div class="card about">
 <div>
-<p class="kicker" data-i18n="about_kicker">Художник MKate (Kate Matveeva)</p>
+<p class="kicker kicker-title" data-i18n="about_kicker">Художник MKate (Kate Matveeva)</p>
 <p data-i18n="about_text">
           Я создаю оригинальные акварели, портреты в технике dry brush и работы маслом — про эмоции, атмосферу и тихую поэзию момента.
           Меня вдохновляют женские образы, свет природы, европейские города и глубина портрета. Работы находятся в частных коллекциях в Европе, России и США.
@@ -96,31 +95,26 @@
 </div>
 <div class="achievements">
 <div class="card" style="padding:22px;">
-<p class="kicker" data-i18n="ach_group_title">Выставки (коллективные)</p>
+<p class="kicker kicker-title" data-i18n="ach_group_title">Выставки (коллективные)</p>
 <ul class="bullets">
 <li data-i18n="ach_group_2025_cn">2025 — 4th Watercolor Exhibition of China‑Russia Cultural Exchange, Beijing (China)</li>
 <li data-i18n="ach_group_2024_us">2024 — Warm Of Canvas (Christmas), Brookline (USA)</li>
 <li data-i18n="ach_group_2024_gm">2024 — Grand Master, Moscow (Russia)</li>
 <li data-i18n="ach_group_2024_10th">2024 — 10th Exhibition of Russian Watercolor Artists, Moscow (Russia)</li>
 <li data-i18n="ach_group_2024_tehran">2024 — “Art And Point” 1st International Annual Watercolor Exhibition, Tehran (Iran)</li>
-<li data-i18n="ach_group_2023_raaw">2023 — RAAW, New York (USA)</li>
 <li data-i18n="ach_group_2022_tretyakov">2022 — Creative Environments, New Tretyakov Gallery, Moscow (Russia)</li>
 </ul>
 <p class="small muted" data-i18n="ach_note">Полный список — на Artmajeur.</p>
 </div>
 <div class="card" style="padding:22px;">
-<p class="kicker" data-i18n="ach_solo_title">Персональные выставки</p>
+<p class="kicker kicker-title" data-i18n="ach_solo_title">Персональные выставки</p>
 <ul class="bullets">
 <li data-i18n="ach_solo_2025">2025 — Watercolor Worlds, Moscow (Russia)</li>
 <li data-i18n="ach_solo_2024">2024 — “Through The Watercolor Window”, June, Moscow (Russia)</li>
 </ul>
-<p class="kicker" data-i18n="ach_collections_title" style="margin-top:14px;">Постоянные коллекции</p>
-<ul class="bullets">
-<li data-i18n="ach_collections_2022">2022 — Artsfashion Exhibition, Moscow (Russia)</li>
-</ul>
 </div>
 <div class="card" style="padding:22px;">
-<p class="kicker" data-i18n="ach_press_title">Публикации и пресса</p>
+<p class="kicker kicker-title" data-i18n="ach_press_title">Публикации и пресса</p>
 <ul class="bullets">
 <li data-i18n="ach_press_2023_gb">2023 — Glamour Buff (USA)</li>
 <li data-i18n="ach_press_2023_js">2023 — Just Summer On My Mind, Miami (USA)</li>
@@ -131,42 +125,37 @@
 </div>
 </div>
 </section>
-<section class="section" id="portfolio">
-<div class="container">
-<h2 data-i18n="portfolio_title">Портфолио</h2>
-<p class="kicker" data-i18n="portfolio_kicker">Фильтруй по темам — открой работу, чтобы увидеть детали.</p>
-<div class="filters" id="filters"></div>
-<div class="gallery" id="gallery"></div>
-</div>
-</section>
 <section class="section" id="shop">
-<div class="container">
-<h2 data-i18n="shop_title">Магазин</h2>
-<p class="kicker" data-i18n="shop_kicker">Оригиналы доступны — для заказа напиши в Telegram или через форму.</p>
-<div class="shop-controls">
-  <div class="filters" id="shopFilters"></div>
-  <div class="sortbar">
-    <label class="sortlabel" for="shopSort" data-i18n="shop_sort_label">Сортировка</label>
-    <select id="shopSort" class="sortselect">
-      <option value="newest" data-i18n="shop_sort_newest">Сначала новые</option>
-      <option value="price_desc" data-i18n="shop_sort_price_desc">Дороже → дешевле</option>
-      <option value="price_asc" data-i18n="shop_sort_price_asc">Дешевле → дороже</option>
-      <option value="year_desc" data-i18n="shop_sort_year_desc">По году (убыв.)</option>
-    </select>
+  <div class="container">
+    <h2 data-i18n="shop_title">Магазин</h2>
+    <p class="kicker" data-i18n="shop_kicker">Оригиналы доступны — для заказа напиши в Telegram или через форму.</p>
+
+    <div class="shop-controls">
+      <div class="filters" id="shopFilters"></div>
+
+      <div class="sortbar">
+        <label class="sortlabel" for="shopSort" data-i18n="shop_sort_label">Сортировка</label>
+        <select id="shopSort" class="sortselect">
+          <option value="newest" data-i18n="shop_sort_newest">Сначала новые</option>
+          <option value="price_desc" data-i18n="shop_sort_price_desc">Дороже → дешевле</option>
+          <option value="price_asc" data-i18n="shop_sort_price_asc">Дешевле → дороже</option>
+          <option value="year_desc" data-i18n="shop_sort_year_desc">По году (убыв.)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="gallery" id="shopGrid"></div>
   </div>
-</div>
-<div class="gallery" id="shopGrid"></div>
-</div>
 </section>
 <section class="section" id="commissions">
 <div class="container">
 <h2 data-i18n="comm_title">Картины на заказ</h2>
 <p class="lead" data-i18n="comm_lead">
-      Портреты, картины по фото и книжные иллюстрации. Сроки и детали — обсудим в личных сообщениях.
+      Портреты, картины по фото и книжные иллюстрации. Сроки и детали по договоренности.
     </p>
 <div class="grid-2">
 <div class="card" style="padding:22px;">
-<p class="kicker" data-i18n="comm_portrait_title">1) Портрет на заказ</p>
+<p class="kicker kicker-title" data-i18n="comm_portrait_title">1) Портрет на заказ</p>
 <p class="small muted" data-i18n="comm_portrait_note">Акварель / масло / чёрно‑белый (dry brush) — по согласованию.</p>
 <div class="price-table">
 <div class="row"><span data-i18n="comm_20x30">20×30 см</span><span>8 500 ₽</span></div>
@@ -179,12 +168,12 @@
         </p>
 </div>
 <div class="card" style="padding:22px;">
-<p class="kicker" data-i18n="comm_photo_title">2) Картина по фото</p>
+<p class="kicker kicker-title" data-i18n="comm_photo_title">2) Картина по фото</p>
 <p class="muted" data-i18n="comm_photo_text">
           Акварель / масло — по запросу. Возможны варианты: на бумаге, бумага на холсте, холст.
         </p>
 <div class="divider"></div>
-<p class="kicker" data-i18n="comm_book_title">3) Иллюстрации к книге</p>
+<p class="kicker kicker-title" data-i18n="comm_book_title">Иллюстрации к книге</p>
 <p class="muted" data-i18n="comm_book_text">
           Медиум по согласованию, 2D‑изображение.
         </p>
@@ -202,7 +191,7 @@
 <div class="grid-3">
 <div class="card plan">
 <h3 data-i18n="pricing_p1_title">Оригинальная работа</h3>
-<p class="p" data-i18n="pricing_p1_text">Выбор из готовых работ из портфолио.</p>
+<p class="p" data-i18n="pricing_p1_text">Выбор из готовых работ в магазине.</p>
 <ul>
 <li data-i18n="pricing_p1_li1">Размер и цена — в карточке работы</li>
 <li data-i18n="pricing_p1_li2">Можно подобрать в интерьер</li>
@@ -222,7 +211,6 @@
 </div>
 <div class="card plan">
 <h3 data-i18n="pricing_p3_title">Оформление в раму</h3>
-<p class="p" data-i18n="pricing_p3_text">Если нужно “под ключ”.</p>
 <ul>
 <li data-i18n="pricing_p3_li1">Подбор паспарту/рамы</li>
 <li data-i18n="pricing_p3_li2">Фото вариантов перед заказом</li>
@@ -238,7 +226,7 @@
 <h2 data-i18n="delivery_title">Доставка и оплата</h2>
 <div class="grid-2">
 <div class="card" style="padding:22px;">
-<p class="kicker" data-i18n="delivery_pay_kicker">Оплата</p>
+<p class="kicker kicker-title" data-i18n="delivery_pay_kicker">Оплата</p>
 <ul style="margin:0; padding-left:18px; color:var(--muted)">
 <li data-i18n="delivery_pay_1">Перевод / удобный способ по договорённости</li>
 <li data-i18n="delivery_pay_2">Предоплата для заказных работ</li>
@@ -246,7 +234,7 @@
 </ul>
 </div>
 <div class="card" style="padding:22px;">
-<p class="kicker" data-i18n="delivery_ship_kicker">Доставка</p>
+<p class="kicker kicker-title" data-i18n="delivery_ship_kicker">Доставка</p>
 <ul style="margin:0; padding-left:18px; color:var(--muted)">
 <li data-i18n="delivery_ship_1">Упаковка с защитой углов</li>
 <li data-i18n="delivery_ship_2">По РФ: 350–500 ₽ (в зависимости от размера). Оплата по согласованию</li>
@@ -298,26 +286,17 @@
 <div class="card" style="padding:22px;">
 <p class="kicker" data-i18n="contacts_kicker">Быстрее всего — в Telegram</p>
 <p data-i18n="contacts_text" style="margin:0 0 14px; color:var(--muted)">
-              Напиши, какая работа понравилась (номер из карточки) — и я отвечу по наличию/доставке/оформлению.
+              Напиши, какая работа понравилась  — и я отвечу по наличию/доставке/оформлению.
             </p>
 <div style="display:flex; gap:10px; flex-wrap:wrap;">
 <a class="btn" href="#" id="tgLink2" rel="noopener noreferrer" target="_blank">Telegram</a>
-<a class="btn" data-i18n="contacts_cta_back" href="#portfolio">Вернуться к портфолио</a>
+<a class="btn" href="https://pin.it/59ugr9vls" rel="noopener noreferrer" target="_blank">Pinterest</a>
+<a class="btn" href="https://youtube.com/@mkate_artist?si=MSG-JP7WAdARFdqh" rel="noopener noreferrer" target="_blank">YouTube</a>
+<a class="btn" href="https://www.instagram.com/mkate.artist?igsh=dGcweGx2eHZvbDEy&utm_source=qr" rel="noopener noreferrer" target="_blank">Instagram</a>
+<a class="btn" data-i18n="contacts_cta_back" href="#shop">Вернуться к портфолио</a>
 </div>
 <hr/>
 
-</div>
-<div class="card form">
-<p class="kicker" data-i18n="form_kicker">Форма заявки</p>
-<div class="row2">
-<input data-i18n-placeholder="form_name" id="fName" placeholder="Имя"/>
-<input data-i18n-placeholder="form_contact" id="fContact" placeholder="Telegram / Email"/>
-</div>
-<div style="margin-top:12px;">
-<textarea data-i18n-placeholder="form_msg" id="fMsg" placeholder="Сообщение (например: хочу работу №10, доставка в ...)"></textarea>
-</div>
-<div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-<button class="btn" data-i18n="form_send" id="sendBtn" type="button">Отправить</button>
 </div>
 </div>
 </div>
